@@ -92,12 +92,10 @@ struct splitNumString splitString(char *s){
     num = "";
 
     while(isDigit(s[size])){
-    
-        char *temp = (char *)malloc(3);
-        strcpy(temp, &s[size]);
-        num = temp;
         size--;
     }
+
+    num = &s[size+1];
     num += '\0';
     size--;
 
@@ -118,7 +116,7 @@ int stringToInt(char *s){
     int num = 0;
     int size = strlen(s);
     for(int i = 0; i < size; i++){
-        num = num*10 + (s[i] - '0');
+        num = num*10 + (int)(s[i] - '0');
     }
     return num;
 }
@@ -147,3 +145,5 @@ int isDigit(char c){
     }
     return 0;
 }
+
+// abcdefghijklmnopqrstuvwxyz0000
