@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <time.h>
 
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 void maxHeapify(int *arr, int n, int i){
     int largest = i;
     int l = 2*i + 1;
@@ -15,10 +21,23 @@ void maxHeapify(int *arr, int n, int i){
         largest = r;
     }
     if(largest != i){
-        int temp = arr[i];
-        arr[i] = arr[largest];
-        arr[largest] = temp;
+        swap(&arr[i], &arr[largest]);
         maxHeapify(arr, n, largest);
+    }
+}
+
+void buildMaxHeap(int *arr, int n){
+    for(int i = n/2 - 1; i >= 0; i--){
+        maxHeapify(arr, n, i);
+    }
+}
+
+void heapSort(int *arr, int n){
+    buildMaxHeap(arr, n);
+    for(int i = n-1; i > 0; i--){
+        swap(&arr[0], &arr[i]);
+        n--;
+        maxHeapify(arr, n, 0);
     }
 }
 
