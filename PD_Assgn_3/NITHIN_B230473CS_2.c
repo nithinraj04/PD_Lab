@@ -32,15 +32,15 @@ int main(){
             int JobID, priority;
             scanf("%d %d", &JobID, &priority);
 
-            // if(JobID < 1 || JobID > 50){
-            //     printf("JobID out of bound\n");
-            //     continue;
-            // }
+            if(JobID < 1 || JobID > 10){
+                printf("JobID out of bound\n");
+                continue;
+            }
 
-            // if(priority < 1 || priority > 10){
-            //     printf("Priority out of bound\n");
-            //     continue;
-            // }
+            if(priority < 1 || priority > 50){
+                printf("Priority out of bound\n");
+                continue;
+            }
 
             if(heapSize == 20){
                 printf("Heap is full\n");
@@ -109,10 +109,6 @@ void buildMaxHeap(data arr[], int n){
 }
 
 void increaseKey(data arr[], int n, int i, int newPriority){
-    if(newPriority < arr[i].priority){
-        printf("New priority is less than current priority\n");
-        return;
-    }
 
     arr[i].priority = newPriority;
     while(i > 0 && arr[(i-1)/2].priority < arr[i].priority){
@@ -174,6 +170,10 @@ int replacePriority(data arr[], int n, int JobID, int priority){
 }
 
 void display(data arr[], int n){
+    if(n < 1){
+        printf("-1\n");
+        return;
+    }
     for(int i = 0; i < n; i++)
         printf("%d %d\n", arr[i].JobID, arr[i].priority);
     
