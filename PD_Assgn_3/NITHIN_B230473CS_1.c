@@ -62,6 +62,11 @@ int main(){
     int n;
     scanf("%d ", &n);
 
+    if(n < 1 || 1000){
+        printf("Number of elements out of bound\n");
+        return 0;
+    }
+
     char * s[n];
     for(int i = 0; i < n; i++){
         s[i] = dynamicString();
