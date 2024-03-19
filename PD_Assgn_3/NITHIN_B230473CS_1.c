@@ -18,44 +18,10 @@ char* dynamicString();
 int isDigit(char c);
 struct splitNumString splitString(char *s);
 int stringToInt(char *s);
-
-void swap(data *a, data *b){
-    data c = *a;
-    *a = *b;
-    *b = c;
-}
-
-void minHeapify(data arr[], int n, int i){
-    int largest = i;
-    int l = 2*i + 1;
-    int r = 2*i + 2;
-
-    if(l < n && arr[l].mileage < arr[largest].mileage){
-        largest = l;
-    }
-    if(r < n && arr[r].mileage < arr[largest].mileage){
-        largest = r;
-    }
-    if(largest != i){
-        swap(&arr[i], &arr[largest]);
-        minHeapify(arr, n, largest);
-    }
-}
-
-void buildMinHeap(data arr[], int n){
-    for(int i = n/2 - 1; i >= 0; i--){
-        minHeapify(arr, n, i);
-    }
-}
-
-void heapSort(data arr[], int n){
-    buildMinHeap(arr, n);
-    for(int i = n-1; i > 0; i--){
-        swap(&arr[0], &arr[i]);
-        n--;
-        minHeapify(arr, n, 0);
-    }
-}
+void swap(data *a, data *b);
+void minHeapify(data arr[], int n, int i);
+void buildMinHeap(data arr[], int n);
+void heapSort(data arr[], int n);
 
 int main(){
 
@@ -154,4 +120,40 @@ int isDigit(char c){
     return 0;
 }
 
-// abcdefghijklmnopqrstuvwxyz0000
+void swap(data *a, data *b){
+    data c = *a;
+    *a = *b;
+    *b = c;
+}
+
+void minHeapify(data arr[], int n, int i){
+    int largest = i;
+    int l = 2*i + 1;
+    int r = 2*i + 2;
+
+    if(l < n && arr[l].mileage < arr[largest].mileage){
+        largest = l;
+    }
+    if(r < n && arr[r].mileage < arr[largest].mileage){
+        largest = r;
+    }
+    if(largest != i){
+        swap(&arr[i], &arr[largest]);
+        minHeapify(arr, n, largest);
+    }
+}
+
+void buildMinHeap(data arr[], int n){
+    for(int i = n/2 - 1; i >= 0; i--){
+        minHeapify(arr, n, i);
+    }
+}
+
+void heapSort(data arr[], int n){
+    buildMinHeap(arr, n);
+    for(int i = n-1; i > 0; i--){
+        swap(&arr[0], &arr[i]);
+        n--;
+        minHeapify(arr, n, 0);
+    }
+}
