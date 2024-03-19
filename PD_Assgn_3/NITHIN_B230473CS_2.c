@@ -10,7 +10,7 @@ struct Data{
 typedef struct Data data;
 
 void swap(data *a, data *b);
-void minHeapify(data arr[], int n, int i);
+void maxHeapify(data arr[], int n, int i);
 void buildMaxHeap(data arr[], int n);
 void increaseKey(data arr[], int n, int i, int newPriority);
 void add(data arr[], int n, int JobID, int priority);
