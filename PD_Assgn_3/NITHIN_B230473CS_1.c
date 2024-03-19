@@ -60,12 +60,15 @@ void heapSort(data arr[], int n){
 int main(){
 
     int n;
-    scanf("%d ", &n);
+    scanf("%d", &n);
 
-    if(n < 1 || 1000){
+    if(n < 1 || n > 1000){
         printf("Number of elements out of bound\n");
         return 0;
     }
+
+    char dummy;
+    scanf("%c", &dummy);
 
     char * s[n];
     for(int i = 0; i < n; i++){
@@ -83,7 +86,7 @@ int main(){
 
     printf("\n");
     for(int i = 0; i < n; i++){
-        printf("%s %d\n", car[i].name, car[i].mileage);
+        printf("%s:%d\n", car[i].name, car[i].mileage);
     }
 
     return 0;
