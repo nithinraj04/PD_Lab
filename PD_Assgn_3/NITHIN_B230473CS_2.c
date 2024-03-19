@@ -120,7 +120,8 @@ void increaseKey(data arr[], int n, int i, int newPriority){
 void add(data arr[], int n, int JobID, int priority){
     arr[n].JobID = JobID;
     arr[n].priority = -1;
-    increaseKey(arr, n, n, priority);
+    n++;
+    increaseKey(arr, n, n-1, priority);
 }
 
 int schedule(data arr[], int n){
