@@ -73,44 +73,49 @@ void strToBinaryTree(node *x, char *s, int *ind){
     printf("%d\n", *ind);
     printf("%p\n", *x);
 
-    // if(s[*ind] == '\0' || s[*ind] == ')'){
-    //     *ind += 1;
-    //     printf("Hi\n");
-    //     return;
-    // }
+    if(s[*ind] == '('){
 
-    if(s[*ind] == '(' && s[*ind+1] != ')'){
+        if (s[*ind+1] != ')'){
         
-        if(*x == NULL){
-            *x = createNode(s[*ind+1] - '0');
-            *ind += 2;
-            strToBinaryTree(x, s, ind);
+            if(*x == NULL){
+                *x = createNode(s[*ind+1] - '0');
+                *ind += 2;
+                strToBinaryTree(x, s, ind);
+            }
+            //(1(2(4()())())(3()()))
+            else{
+                (*x)->left = createNode(s[*ind+1] - '0');
+                *ind += 2;
+                strToBinaryTree(&(*x)->left, s, ind);
+            }
         }
-        //(1(2(4()())())(3()()))
+
         else{
-            (*x)->left = createNode(s[*ind+1] - '0');
             *ind += 2;
-            strToBinaryTree(&(*x)->left, s, ind);
         }
     }
+    
 
-    else  {
-        *ind += 2;
+    if(s[*ind] == '('){
+        if (s[*ind+1] != ')'){
+            printf("Hello\n");
+            (*x)->right = createNode(s[*ind+1] - '0');
+            *ind += 2;
+            strToBinaryTree(&(*x)->right, s, ind);
+        }
+        else{
+            *ind += 2;
+        }
     }
 
     if(s[*ind] == ')'){
         *ind += 1;
     }
 
-    if(s[*ind] == '(' && s[*ind+1] != ')'){
-        printf("Hello\n");
-        (*x)->right = createNode(s[*ind+1] - '0');
-        *ind += 2;
-        strToBinaryTree(&(*x)->right, s, ind);
+    if(s[*ind] == '\0'){
+        return;
     }
-    else{
-        *ind += 2;
-    }
+
     printf("%d\n", *ind);
 }
 
