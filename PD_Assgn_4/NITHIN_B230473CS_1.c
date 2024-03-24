@@ -118,11 +118,80 @@ void inorder(node root){
     }
 }
 
-void pre
+void preorder(node root){
+    if(root != NULL){
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+void postorder(node root){
+    if(root != NULL){
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ", root->data);
+    }
+}
 
 int main(){
 
-    
+    char c;
+    node root = NULL;
+
+    while(1){
+        scanf(" %c", &c);
+
+        if(c == 'i'){
+            int num;
+            scanf("%d ", &num);
+            insertNode(&root, num);
+        }
+
+        else if(c == 's'){
+            int num;
+            scanf("%d", &num);
+            node temp = searchKey(root, num);
+            if(temp != NULL)
+                printf("PRESENT\n");
+            else
+                printf("NOT PRESENT\n");
+        }
+
+        else if(c == 'd'){
+            int num;
+            scanf("%d", &num);
+            deleteKey(&root, num);
+        }
+
+
+        else if(c == 'p'){
+            if(root == NULL)
+                printf("NULL");
+            else
+                inorder(root);
+            printf("\n");
+        }
+
+        else if(c == 't'){
+            if(root == NULL)
+                printf("NULL");
+            else
+                preorder(root);
+            printf("\n");
+        }
+
+        else if(c == 'b'){
+            if(root == NULL)
+                printf("NULL");
+            else
+                postorder(root);
+            printf("\n");
+        }
+
+        else if(c == 'e')
+            break;
+    }
 
     return 0;
 }
