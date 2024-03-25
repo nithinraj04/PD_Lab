@@ -111,6 +111,60 @@ void deleteKey(node *root, int num){
     free(key);
 }
 
+void kthSmallest(node root, int *k){
+    if(k > 0 && root != NULL){
+        kthSmallest(root->left, k);
+        *k -= 1;
+        if(*k == 0){
+            printf("%d\n", root->data);
+            *k -= 1;
+            return;
+        }
+        kthSmallest(root->right, k);
+    }
+   
+}
+
+int maximum(node root){
+    while(root->right != NULL)
+        root = root->right;
+    return root->data;
+}
+
+void successor(node root, int num){
+    node key = searchKey(root, num);
+
+    if(key == NULL){
+        printf("NOT FOUND\n");
+        return;
+    }
+
+    if(key->right != NULL){
+        node min = minimum(key->right);
+        printf("%d\n", min->data);
+    }
+
+    else {
+        node curr = root;
+        node successor = NULL;
+
+        while (curr != key) {
+            if (key->data < curr->data) {
+                successor = curr;
+                curr = curr->left;
+            } 
+            else if (key->data > curr->data) 
+                curr = curr->right;
+        }
+
+        if (successor == NULL) 
+            printf("-1\n");
+        else 
+            printf("%d\n", successor->data);
+    }
+
+}
+
 void inorder(node root){
     if(root != NULL){
         inorder(root->left);
@@ -165,6 +219,20 @@ int main(){
             deleteKey(&root, num);
         }
 
+        else if(c == 'k'){
+            int num;
+            scanf("%d", &num);
+            kthSmallest(root, &num);
+        }
+
+        else if(c == 'm')
+            printf("%d\n", maximum(root));
+
+        else if(c == 'n'){
+            int num;
+            scanf("%d", &num);
+            successor(root, num);
+        }
 
         else if(c == 'p'){
             if(root == NULL)
