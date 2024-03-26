@@ -173,22 +173,6 @@ void inorder(node root){
     }
 }
 
-void preorder(node root){
-    if(root != NULL){
-        printf("%d ", root->data);
-        preorder(root->left);
-        preorder(root->right);
-    }
-}
-
-void postorder(node root){
-    if(root != NULL){
-        postorder(root->left);
-        postorder(root->right);
-        printf("%d ", root->data);
-    }
-}
-
 int main(){
 
     char c;
@@ -239,22 +223,6 @@ int main(){
                 printf("NULL");
             else
                 inorder(root);
-            printf("\n");
-        }
-
-        else if(c == 't'){
-            if(root == NULL)
-                printf("NULL");
-            else
-                preorder(root);
-            printf("\n");
-        }
-
-        else if(c == 'b'){
-            if(root == NULL)
-                printf("NULL");
-            else
-                postorder(root);
             printf("\n");
         }
 
