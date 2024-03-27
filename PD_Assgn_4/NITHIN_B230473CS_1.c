@@ -52,10 +52,10 @@ node searchKey(node root, int key){
         return root;
         
     if(key < root->data)
-        searchKey(root->left, key);
+        return searchKey(root->left, key);
 
     else
-        searchKey(root->right, key);
+        return searchKey(root->right, key);
 }
 
 void translate(node *root, node u, node v){
