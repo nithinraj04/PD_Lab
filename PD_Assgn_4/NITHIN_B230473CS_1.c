@@ -59,8 +59,9 @@ node searchKey(node root, int key){
 }
 
 void translate(node *root, node u, node v){
-    if(u->parent == NULL){
+    if(u == *root){
         *root = v;
+        v->parent = NULL;
         return;
     }
 
@@ -83,6 +84,10 @@ node minimum(node root){
 void deleteKey(node *root, int num){
 
     node key = searchKey(*root, num);
+
+    // printf("%d\n", key->data);
+    // printf("%d\n", key->left->data);
+    // printf("%d\n", key->right->data);
 
     if(key == NULL){
         printf("NOT FOUND\n");
@@ -173,6 +178,8 @@ int main(){
             else
                 inorder(root);
             printf("\n");
+
+            // printf("%d\n", root->data);
         }
 
         else if(c == 't'){
@@ -197,3 +204,14 @@ int main(){
 
     return 0;
 }
+
+// i 20
+// i 30
+// i 15
+// i 25
+// d 20
+// d 25
+// p
+// t
+// b
+// e
