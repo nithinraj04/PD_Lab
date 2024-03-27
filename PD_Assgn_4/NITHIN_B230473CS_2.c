@@ -48,16 +48,17 @@ node searchKey(node root, int key){
         return root;
         
     if(key < root->data)
-        searchKey(root->left, key);
+        return searchKey(root->left, key);
 
     else
-        searchKey(root->right, key);
+        return searchKey(root->right, key);
 }
 
 void translate(node *root, node u, node v){
-    if(u == *root)
+    if(u == *root){
         *root = v;
-
+        return;
+    }
     node x = *root;
     node y = NULL;
     while(x != u){
@@ -81,7 +82,7 @@ node minimum(node root){
     return root;
 }
 
-void deleteKey(node *root, int num){
+void deleteKey(node *root, int num){ 
 
     node key = searchKey(*root, num);
 
@@ -92,7 +93,7 @@ void deleteKey(node *root, int num){
 
     if(key->left == NULL)
         translate(root, key, key->right);
-    
+            
     else if(key->right == NULL)
         translate(root, key, key->left);
 

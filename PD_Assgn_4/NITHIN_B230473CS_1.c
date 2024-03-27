@@ -59,8 +59,10 @@ node searchKey(node root, int key){
 }
 
 void translate(node *root, node u, node v){
-    if(u->parent == NULL)
+    if(u->parent == NULL){
         *root = v;
+        return;
+    }
 
     else if(u->parent->left == u) //u < u.parent
         u->parent->left = v;
